@@ -8,5 +8,7 @@ for file in $files; do
     if [ ! -e $dst ]; then
         echo "Symlinking $dst..."
         ln -s $dotfiles_dir/$file $dst
+    else
+        echo "$dst already exists... No symlink created"
     fi
 done
