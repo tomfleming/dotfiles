@@ -10,6 +10,10 @@ ZSH_THEME="bureau"
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
+
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
 
@@ -47,9 +51,12 @@ ZSH_THEME="bureau"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git tmux colored-man-pages)
 ZSH_TMUX_AUTOSTART="true"
+ZSH_TMUX_AUTOCONNECT="false"
 
 # User configuration
-export PATH="/usr/local/bin:/usr/local/sbin:~/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+# Add anaconda to path
+export PATH="$HOME/anaconda/bin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -78,9 +85,3 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-# Add brewed packages to path
-export PATH="/usr/local/bin:/usr/local/sbin:~/bin:$PATH"
-
-# Add anaconda to path
-export PATH="/Users/tomdfleming/anaconda/bin:$PATH"
