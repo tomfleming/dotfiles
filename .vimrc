@@ -128,6 +128,7 @@ set backspace=2
 " SET BETTER TABBING STYLES FOR HTML AND JAVASCRIPT
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
+autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 autocmd Filetype markdown setlocal ts=2 sts=2 sw=2
 autocmd BufNewFile,BufRead *.md set filetype=markdown
 
@@ -137,6 +138,6 @@ let g:ycm_path_to_python_interpreter = "/usr/bin/python"
 " SET SHROTCUT FOR PRETTY HTML/CSS/JS
 autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
 autocmd FileType json noremap <buffer> <c-f> :call JsonBeautify()<cr>
-autocmd FileType jsx noremap <buffer> <c-f> :call JsxBeautify()<cr>
+autocmd FileType javascript.jsx noremap <buffer> <c-f> :call JsxBeautify()<cr>
 autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
 autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>

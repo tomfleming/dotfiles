@@ -58,6 +58,7 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 # Add anaconda to path
 export PATH="$HOME/anaconda/bin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
+autoload -Uz compinit && compinit
 
 source $ZSH/oh-my-zsh.sh
 
