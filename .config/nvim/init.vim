@@ -122,8 +122,7 @@ autocmd Filetype markdown setlocal ts=2 sts=2 sw=2
 autocmd BufNewFile,BufRead *.md set filetype=markdown
 
 " FIXES FOR YCM
-let g:ycm_path_to_python_interpreter = "/usr/bin/python"
-let g:ycm_server_use_vim_stdout = 0
+let g:ycm_python_binary_path = 'python'
 
 " SET SHROTCUT FOR PRETTY HTML/CSS/JS
 autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
