@@ -49,9 +49,7 @@ ZSH_THEME="bureau-tweak"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git tmux colored-man-pages)
-ZSH_TMUX_AUTOSTART="true"
-ZSH_TMUX_AUTOCONNECT="false"
+plugins=(git colored-man-pages)
 
 # User configuration
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
@@ -86,3 +84,11 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+function ttmux {
+	if (pgrep tmux); then
+		tmux attach
+	else
+        tmux
+	fi
+    builtin exit
+}

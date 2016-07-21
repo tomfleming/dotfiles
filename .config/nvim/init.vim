@@ -1,36 +1,27 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-"
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'scrooloose/nerdtree'
-Plugin 'kien/ctrlp.vim'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'bling/vim-airline'
-Plugin 'godlygeek/tabular'
-Plugin 'mattn/emmet-vim'
-Plugin 'Yggdroot/indentLine'
-Plugin 'scrooloose/syntastic'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
-Plugin 'tpope/vim-fugitive'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'tpope/vim-surround'
-Plugin 'maksimr/vim-jsbeautify'
-Plugin 'einars/js-beautify'
+call plug#begin('~/.config/nvim/plugged')
+
+Plug 'gmarik/Vundle.vim'
+Plug 'altercation/vim-colors-solarized'
+Plug 'scrooloose/nerdtree'
+Plug 'kien/ctrlp.vim'
+Plug 'Valloric/YouCompleteMe'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'godlygeek/tabular'
+Plug 'mattn/emmet-vim'
+Plug 'Yggdroot/indentLine'
+Plug 'scrooloose/syntastic'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'tpope/vim-fugitive'
+Plug 'easymotion/vim-easymotion'
+Plug 'tpope/vim-surround'
+Plug 'maksimr/vim-jsbeautify'
+Plug 'einars/js-beautify'
 
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
+call plug#end()            " required
 
 " ENABLE SYNTAX HIGHLIGHTING
 syntax on
@@ -56,10 +47,6 @@ set expandtab
 
 " SET A VERTICAL LINE AT 73 and 80 CHARACTERS
 let &colorcolumn="73,80"
-
-" ENABLE MOUSE SUPPORT
-set mouse=a
-set ttym=xterm2
 
 " SET COLORSCHEME
 colorscheme solarized
@@ -101,6 +88,14 @@ autocmd BufWritePre * :%s/\s\+$//e
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zO
 
+" MAKE AIRLINE SHOW UP BY DEFAULT
+" Follow these instructions to get the symbols working:
+" https://powerline.readthedocs.org/en/latest/installation.html#fonts-installation
+let g:airline_powerline_fonts=1
+
+set laststatus=2
+set encoding=utf-8
+
 " RECOMMENDED SYNTASTIC DEFAULTS
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -111,13 +106,6 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 let g:syntastic_mode_map = {"mode": "active", "passive_filetypes": ["javascript"]}
 
-
-" MAKE AIRLINE SHOW UP BY DEFAULT
-" Follow these instructions to get the symbols working:
-" https://powerline.readthedocs.org/en/latest/installation.html#fonts-installation
-set laststatus=2
-set encoding=utf-8
-let g:airline_powerline_fonts=1
 
 " EASYMOTION
 map <Leader> <Plug>(easymotion-prefix)
@@ -135,6 +123,7 @@ autocmd BufNewFile,BufRead *.md set filetype=markdown
 
 " FIXES FOR YCM
 let g:ycm_path_to_python_interpreter = "/usr/bin/python"
+let g:ycm_server_use_vim_stdout = 0
 
 " SET SHROTCUT FOR PRETTY HTML/CSS/JS
 autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
