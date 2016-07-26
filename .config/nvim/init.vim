@@ -1,24 +1,17 @@
 " set the runtime path to include Vundle and initialize
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'gmarik/Vundle.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'scrooloose/nerdtree'
-Plug 'kien/ctrlp.vim'
 Plug 'Valloric/YouCompleteMe'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'godlygeek/tabular'
 Plug 'mattn/emmet-vim'
 Plug 'Yggdroot/indentLine'
 Plug 'scrooloose/syntastic'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
-Plug 'tpope/vim-fugitive'
-Plug 'easymotion/vim-easymotion'
-Plug 'tpope/vim-surround'
-Plug 'maksimr/vim-jsbeautify'
-Plug 'einars/js-beautify'
+Plug 'tmhedberg/SimpylFold'
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
@@ -122,7 +115,11 @@ autocmd Filetype markdown setlocal ts=2 sts=2 sw=2
 autocmd BufNewFile,BufRead *.md set filetype=markdown
 
 " FIXES FOR YCM
-let g:ycm_python_binary_path = 'python'
+if has('mac')
+    let g:ycm_path_to_python_interpreter = "/usr/bin/python"
+elseif has('unix')
+    let g:ycm_python_binary_path = 'python'
+endif
 
 " SET SHROTCUT FOR PRETTY HTML/CSS/JS
 autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
@@ -130,3 +127,6 @@ autocmd FileType json noremap <buffer> <c-f> :call JsonBeautify()<cr>
 autocmd FileType javascript.jsx noremap <buffer> <c-f> :call JsxBeautify()<cr>
 autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
 autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
+
+" Show python docstring previews
+let g:SimpylFold_docstring_preview = 1
