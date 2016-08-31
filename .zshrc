@@ -85,6 +85,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias vim="nvim"
+alias vimdiff="nvim -d"
 function ttmux {
 	if (pgrep tmux); then
 		tmux attach
