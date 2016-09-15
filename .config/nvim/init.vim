@@ -14,6 +14,7 @@ Plug 'mxw/vim-jsx'
 Plug 'tmhedberg/SimpylFold'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'leafgarland/typescript-vim'
+Plug 'suan/vim-instant-markdown'
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
