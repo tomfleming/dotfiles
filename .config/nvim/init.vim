@@ -16,6 +16,7 @@ Plug 'hynek/vim-python-pep8-indent'
 Plug 'leafgarland/typescript-vim'
 Plug 'suan/vim-instant-markdown'
 Plug 'majutsushi/tagbar'
+Plug 'tomfleming/yalp-nvim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 " All of your Plugins must be added before the following line
@@ -103,6 +104,7 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 let g:syntastic_mode_map = {"mode": "active", "passive_filetypes": ["javascript"]}
+let g:syntastic_python_checkers = ['pylint']
 
 
 " EASYMOTION
@@ -120,7 +122,7 @@ autocmd BufNewFile,BufRead *.md set filetype=markdown
 
 " FIXES FOR YCM
 if has('mac')
-    let g:ycm_path_to_python_interpreter = "/usr/bin/python"
+    let g:ycm_path_to_python_interpreter = 'python'
 elseif has('unix')
     let g:ycm_python_binary_path = 'python'
 endif
@@ -142,3 +144,6 @@ autocmd Filetype json let g:indentLine_conceallevel=0
 let g:tagbar_autofocus = 1
 nmap <C-T> :TagbarToggle<CR>
 autocmd BufWritePre,FileWritePre * TagbarClose
+
+" MAP FUZZY FINDER
+nmap <C-F> :FZF<CR>

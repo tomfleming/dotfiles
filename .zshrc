@@ -49,14 +49,23 @@ ZSH_THEME="bureau-tweak"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git colored-man-pages)
+plugins=(git colored-man-pages history-substring-search)
+
 
 # User configuration
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+
 # Add anaconda to path
 export PATH="$HOME/anaconda/bin:$PATH"
+
 # export MANPATH="/usr/local/man:$MANPATH"
 autoload -Uz compinit && compinit
+
+# Add CUDA stuff to PATH
+export CUDA_HOME=/usr/local/cuda
+export DYLD_LIBRARY_PATH="$DYLD_LIBRARY_PATH:$CUDA_HOME/lib"
+export PATH="$CUDA_HOME/bin:$PATH"
+
 
 source $ZSH/oh-my-zsh.sh
 
@@ -94,3 +103,5 @@ function ttmux {
 	fi
     builtin exit
 }
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

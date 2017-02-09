@@ -1,0 +1,6 @@
+[core]
+	excludesfile = ~/.gitignore_global
+[alias]
+    network = log --graph --oneline --decorate --all
+[include]
+    path = ~/.gitconfig_user
