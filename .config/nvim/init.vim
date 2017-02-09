@@ -15,6 +15,8 @@ Plug 'tmhedberg/SimpylFold'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'leafgarland/typescript-vim'
 Plug 'suan/vim-instant-markdown'
+Plug 'majutsushi/tagbar'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
@@ -113,8 +115,7 @@ set backspace=2
 " SET BETTER TABBING STYLES FOR HTML AND JAVASCRIPT
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
-autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
-autocmd Filetype markdown setlocal ts=2 sts=2 sw=2
+autocmd Filetype markdown setlocal ts=2 sts=2 sw=2 spell
 autocmd BufNewFile,BufRead *.md set filetype=markdown
 
 " FIXES FOR YCM
@@ -133,3 +134,11 @@ autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
 
 " Show python docstring previews
 let g:SimpylFold_docstring_preview = 1
+
+" Turn off indentline for JSON
+autocmd Filetype json let g:indentLine_conceallevel=0
+
+" Tagbar settings
+let g:tagbar_autofocus = 1
+nmap <C-T> :TagbarToggle<CR>
+autocmd BufWritePre,FileWritePre * TagbarClose
