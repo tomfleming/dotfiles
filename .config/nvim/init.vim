@@ -104,7 +104,7 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 1
 let g:syntastic_mode_map = {"mode": "active", "passive_filetypes": ["javascript"]}
-let g:syntastic_python_checkers = ['pylint']
+let g:syntastic_python_checkers = ['pycodestyle']
 
 
 " EASYMOTION
@@ -126,6 +126,10 @@ if has('mac')
 elseif has('unix')
     let g:ycm_python_binary_path = 'python'
 endif
+
+" GOTO SHORTCUT FOR YCM
+nnoremap <leader>jd :YcmCompleter GoTo<CR>
+nnoremap <leader>jr :YcmCompleter GoToReferences<CR>
 
 " SET SHROTCUT FOR PRETTY HTML/CSS/JS
 autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
