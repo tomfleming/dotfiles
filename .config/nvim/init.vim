@@ -6,9 +6,8 @@ Plug 'scrooloose/nerdtree'
 Plug 'Valloric/YouCompleteMe'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'mattn/emmet-vim'
 Plug 'Yggdroot/indentLine'
-Plug 'scrooloose/syntastic'
+Plug 'w0rp/ale'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'tmhedberg/SimpylFold'
@@ -17,7 +16,7 @@ Plug 'leafgarland/typescript-vim'
 Plug 'suan/vim-instant-markdown'
 Plug 'majutsushi/tagbar'
 Plug 'tomfleming/yalp-nvim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
@@ -95,22 +94,6 @@ let g:airline_powerline_fonts=1
 set laststatus=2
 set encoding=utf-8
 
-" RECOMMENDED SYNTASTIC DEFAULTS
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
-let g:syntastic_mode_map = {"mode": "active", "passive_filetypes": ["javascript"]}
-let g:syntastic_python_checkers = ['pycodestyle']
-
-
-" EASYMOTION
-map <Leader> <Plug>(easymotion-prefix)
-nmap s <Plug>(easymotion-s2)
-
 " MAKE BACKSPACE WORK CONSISTENTLY WITH OTHER APPS
 set backspace=2
 
@@ -131,12 +114,9 @@ endif
 nnoremap <leader>jd :YcmCompleter GoTo<CR>
 nnoremap <leader>jr :YcmCompleter GoToReferences<CR>
 
-" SET SHROTCUT FOR PRETTY HTML/CSS/JS
-autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
-autocmd FileType json noremap <buffer> <c-f> :call JsonBeautify()<cr>
-autocmd FileType javascript.jsx noremap <buffer> <c-f> :call JsxBeautify()<cr>
-autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
-autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
+" make Prettier run async
+let g:prettier#exec_cmd_async = 1
+
 
 " Show python docstring previews
 let g:SimpylFold_docstring_preview = 1
@@ -149,5 +129,6 @@ let g:tagbar_autofocus = 1
 nmap <C-T> :TagbarToggle<CR>
 autocmd BufWritePre,FileWritePre * TagbarClose
 
-" MAP FUZZY FINDER
-nmap <C-F> :FZF<CR>
+" use pycodestyle for linting python files
+let g:ale_linters = { 'python': ['pycodestyle'], 'javascript': ['prettier-eslint']}
+let g:ale_open_list = 1
