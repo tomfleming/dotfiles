@@ -53,7 +53,7 @@ plugins=(git colored-man-pages history-substring-search)
 
 
 # User configuration
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin"
 
 # Add anaconda to path
 export PATH="$HOME/anaconda/bin:$PATH"
@@ -65,7 +65,9 @@ autoload -Uz compinit && compinit
 export CUDA_HOME=/usr/local/cuda
 export DYLD_LIBRARY_PATH="$DYLD_LIBRARY_PATH:$CUDA_HOME/lib"
 export PATH="$CUDA_HOME/bin:$PATH"
-
+#
+# Add rust stuff to PATH
+export PATH="$HOME/.cargo/bin:$PATH"
 
 source $ZSH/oh-my-zsh.sh
 

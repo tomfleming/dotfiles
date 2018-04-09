@@ -17,6 +17,7 @@ Plug 'suan/vim-instant-markdown'
 Plug 'majutsushi/tagbar'
 Plug 'tomfleming/yalp-nvim'
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
+Plug 'rust-lang/rust.vim'
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
@@ -85,6 +86,7 @@ autocmd BufWritePre * :%s/\s\+$//e
 " SIMPLIFY CODE FOLDING
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zO
+let g:rust_fold = 2
 
 " MAKE AIRLINE SHOW UP BY DEFAULT
 " Follow these instructions to get the symbols working:
@@ -101,14 +103,14 @@ set backspace=2
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 autocmd Filetype markdown setlocal ts=2 sts=2 sw=2 spell
+autocmd Filetype rst setlocal spell
 autocmd BufNewFile,BufRead *.md set filetype=markdown
+autocmd BufNewFile,BufRead Jenkinsfile* set filetype=groovy
+
 
 " FIXES FOR YCM
-if has('mac')
-    let g:ycm_path_to_python_interpreter = 'python'
-elseif has('unix')
-    let g:ycm_python_binary_path = 'python'
-endif
+let g:ycm_python_binary_path = 'python'
+
 
 " GOTO SHORTCUT FOR YCM
 nnoremap <leader>jd :YcmCompleter GoTo<CR>

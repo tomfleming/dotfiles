@@ -6,6 +6,7 @@ backup_dir = '~/dotfiles_old'
 files = [
         ".gitignore_global",
         ".oh-my-zsh/custom/aliases.zsh",
+        ".oh-my-zsh/custom/functions.zsh",
         ".oh-my-zsh/custom/themes/bureau-tweak.zsh-theme",
         ".tmux.conf",
         ".vimrc",
