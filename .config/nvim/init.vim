@@ -18,6 +18,7 @@ Plug 'majutsushi/tagbar'
 Plug 'tomfleming/yalp-nvim'
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'rust-lang/rust.vim'
+Plug 'elmcast/elm-vim'
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
