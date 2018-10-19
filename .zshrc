@@ -56,7 +56,7 @@ plugins=(git colored-man-pages history-substring-search)
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/TeX/texbin"
 
 # Add anaconda to path
-export PATH="$HOME/anaconda/bin:$PATH"
+export PATH="$HOME/miniconda3/bin:$PATH"
 
 # export MANPATH="/usr/local/man:$MANPATH"
 autoload -Uz compinit && compinit
