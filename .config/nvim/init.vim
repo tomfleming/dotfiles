@@ -20,6 +20,7 @@ Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'rust-lang/rust.vim'
 Plug 'elmcast/elm-vim'
 Plug 'tpope/vim-surround'
+Plug 'junegunn/fzf'
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
@@ -36,6 +37,9 @@ map <C-n> :NERDTreeToggle<CR>
 " AUTOMATICALLY CLOSE NERDTree AFTER OPENING A FILE
 let NERDTreeQuitOnOpen = 1
 let NERDTreeIgnore = ['\.pyc$']
+
+" SHORTCUT FOR FZF
+map <C-f> :FZF<CR>
 
 " TURN ON SEARCH HIGHLIGHTING
 set hlsearch
@@ -134,7 +138,7 @@ nmap <C-T> :TagbarToggle<CR>
 autocmd BufWritePre,FileWritePre * TagbarClose
 
 " use pycodestyle for linting python files
-let g:ale_linters = { 'python': ['flake8'], 'javascript': ['prettier-eslint']}
+let g:ale_linters = { 'python': ['pycodestyle'], 'javascript': ['prettier-eslint']}
 let g:ale_open_list = 1
 let g:ale_sign_column_always = 1
 let g:ale_lint_on_text_changed = 'never'
