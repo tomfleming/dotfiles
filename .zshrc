@@ -17,6 +17,7 @@ export PATH="$HOME/.cargo/bin:$PATH"  # for Rust
 
 # enable zsh auto-completion
 autoload -Uz compinit && compinit
+eval "$(pipenv --completion)"
 
 
 # configure CUDA
