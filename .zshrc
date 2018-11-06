@@ -1,5 +1,6 @@
 # load oh-my-zsh + plugins
 export OMZ_ROOT=$HOME/.oh-my-zsh
+export ZSH=$OMZ_ROOT  # oh-my-zsh requires this ENV variable for some reason
 source $OMZ_ROOT/oh-my-zsh.sh
 plugins=(git colored-man-pages history-substring-search)
 
