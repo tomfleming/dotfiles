@@ -5,6 +5,10 @@ source $OMZ_ROOT/oh-my-zsh.sh
 plugins=(git colored-man-pages history-substring-search)
 
 
+# if zsh ever starts loading slowly again... try zprof
+# zmodload zsh/zprof
+
+
 # enable pure prompt
 autoload -U promptinit; promptinit
 prompt pure
@@ -50,12 +54,6 @@ function ttmux {
 export FZF_DEFAULT_COMMAND="git ls-files 2>/dev/null || find . -type f"
 
 
-# configure node version manager (nvm)
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-
 # load pyenv (python version manager)
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
@@ -64,3 +62,11 @@ fi
 
 # load rbenv to manage ruby versions
 eval "$(rbenv init -)"
+
+
+# load nodenv to manage node versions
+eval "$(nodenv init -)"
+
+
+# if zsh ever starts loading slowly again... try zprof
+# zprof
