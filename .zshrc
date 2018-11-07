@@ -1,8 +1,10 @@
-# load oh-my-zsh + plugins
-export OMZ_ROOT=$HOME/.oh-my-zsh
-export ZSH=$OMZ_ROOT  # oh-my-zsh requires this ENV variable for some reason
-source $OMZ_ROOT/oh-my-zsh.sh
-plugins=(git colored-man-pages history-substring-search)
+# load prezto + plugins
+source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+
+
+# switch default editor to vim
+export EDITOR='vim'
+export VISUAL='vim'
 
 
 # if zsh ever starts loading slowly again... try zprof
@@ -33,7 +35,8 @@ export DYLD_LIBRARY_PATH="$DYLD_LIBRARY_PATH:$CUDA_HOME/lib"
 # set personal aliases
 alias docker-cleanup='docker rm -v $(docker ps -a -q -f status=exited); docker rmi $(docker images -f "dangling=true" -q)'
 alias doco="docker-compose"
-alias ls="ls -GFlsh"
+alias ll="ls -GFlsh"
+alias la="ls -GFlash"
 alias vim="nvim"
 alias vimdiff="nvim -d"
 
