@@ -55,11 +55,7 @@ let &colorcolumn="73,80"
 
 " SET COLORSCHEME
 colorscheme solarized
-if strftime("%H")>=20 || strftime("%H")<=8
-    set background=light
-else
-	set background=dark
-endif
+set background=light
 
 " SIMPLIFY SPLIT NAVIGATION
 nnoremap <C-J> <C-W><C-J>

@@ -20,6 +20,8 @@ prompt pure
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/Library/TeX/texbin"
 export PATH="$CUDA_HOME/bin:$PATH"  # for GPU
 export PATH="$HOME/.cargo/bin:$PATH"  # for Rust
+export PATH="$HOME/apache-maven-3.6.0/bin:$PATH"  # for maven
+export PATH="$HOME/.jenv/bin:$PATH"  # for java version management
 
 
 # enable zsh auto-completion
@@ -39,6 +41,7 @@ alias ll="ls -GFlsh"
 alias la="ls -GFlash"
 alias vim="nvim"
 alias vimdiff="nvim -d"
+alias cd-gitr='cd $(git rev-parse --show-toplevel)'
 
 
 # run tmux automatically at shell startup
@@ -69,6 +72,10 @@ eval "$(rbenv init -)"
 
 # load nodenv to manage node versions
 eval "$(nodenv init -)"
+
+
+# load nodenv to manage node versions
+eval "$(jenv init -)"
 
 
 # if zsh ever starts loading slowly again... try zprof
