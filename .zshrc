@@ -78,5 +78,9 @@ eval "$(nodenv init -)"
 eval "$(jenv init -)"
 
 
+# import non-shared aliases
+. $HOME/.zcustomaliases
+
+
 # if zsh ever starts loading slowly again... try zprof
 # zprof

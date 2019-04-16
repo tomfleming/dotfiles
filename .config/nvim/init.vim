@@ -21,6 +21,8 @@ Plug 'rust-lang/rust.vim'
 Plug 'elmcast/elm-vim'
 Plug 'tpope/vim-surround'
 Plug 'junegunn/fzf'
+Plug 'tpope/vim-fugitive'
+Plug 'Konfekt/FastFold'
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
@@ -112,6 +114,7 @@ autocmd BufNewFile,BufRead Jenkinsfile* set filetype=groovy
 
 " FIXES FOR YCM
 let g:ycm_python_binary_path = 'python'
+let g:EclimCompletionMethod = 'omnifunc'
 
 
 " GOTO SHORTCUT FOR YCM
@@ -134,7 +137,13 @@ nmap <C-T> :TagbarToggle<CR>
 autocmd BufWritePre,FileWritePre * TagbarClose
 
 " use pycodestyle for linting python files
-let g:ale_linters = { 'python': ['pycodestyle'], 'javascript': ['prettier-eslint']}
+let g:ale_linters = {
+            \ 'python': ['pycodestyle'],
+            \ 'javascript': ['prettier-eslint']
+            \ }
 let g:ale_open_list = 1
 let g:ale_sign_column_always = 1
 let g:ale_lint_on_text_changed = 'never'
+
+" yank directly to clipboard
+set cb=unnamed
