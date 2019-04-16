@@ -3,16 +3,19 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'altercation/vim-colors-solarized'
 Plug 'scrooloose/nerdtree'
-Plug 'Valloric/YouCompleteMe'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'Yggdroot/indentLine'
 Plug 'w0rp/ale'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
+Plug 'ianks/vim-tsx'
 Plug 'tmhedberg/SimpylFold'
 Plug 'hynek/vim-python-pep8-indent'
-Plug 'leafgarland/typescript-vim'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 Plug 'suan/vim-instant-markdown'
 Plug 'majutsushi/tagbar'
 Plug 'tomfleming/yalp-nvim'
@@ -105,28 +108,34 @@ set backspace=2
 
 " SET BETTER TABBING STYLES FOR HTML AND JAVASCRIPT
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
+autocmd Filetype pug setlocal ts=2 sts=2 sw=2
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 autocmd Filetype markdown setlocal ts=2 sts=2 sw=2 spell
 autocmd Filetype rst setlocal spell
 autocmd BufNewFile,BufRead *.md set filetype=markdown
 autocmd BufNewFile,BufRead Jenkinsfile* set filetype=groovy
+autocmd BufNewFile,BufRead *.pug set filetype=pug
 
 
-" FIXES FOR YCM
-let g:ycm_python_binary_path = 'python'
+" ENABLE BASIC JAVA FUNCTIONALITY
 let g:EclimCompletionMethod = 'omnifunc'
+
+
+" SETUP DEOPLETE
+let g:deoplete#enable_at_startup = 1
+inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
+let g:python3_host_prog = $HOME."/.pyenv/versions/3.7.1/bin/python"
 
 
 " GOTO SHORTCUT FOR YCM
 nnoremap <leader>jd :YcmCompleter GoTo<CR>
 nnoremap <leader>jr :YcmCompleter GoToReferences<CR>
 
+
 " make Prettier run async
 let g:prettier#exec_cmd_async = 1
 
-
-" Show python docstring previews
-let g:SimpylFold_docstring_preview = 1
 
 " Turn off indentline for JSON
 autocmd Filetype json let g:indentLine_conceallevel=0
@@ -141,9 +150,16 @@ let g:ale_linters = {
             \ 'python': ['pycodestyle'],
             \ 'javascript': ['prettier-eslint']
             \ }
+let g:ale_fixers = {
+            \ 'javascript': ['prettier'],
+            \ 'typescript': ['prettier'],
+            \ 'css': ['prettier']
+            \ }
+let g:ale_fix_on_save = 1
 let g:ale_open_list = 1
 let g:ale_sign_column_always = 1
 let g:ale_lint_on_text_changed = 'never'
+
 
 " yank directly to clipboard
 set cb=unnamed
