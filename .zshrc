@@ -58,6 +58,7 @@ function ttmux {
 # configure fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND="git ls-files 2>/dev/null || find . -type f"
+alias vimff='vim $(fzf)'
 
 
 # load pyenv (python version manager)

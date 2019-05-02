@@ -24,6 +24,7 @@ Plug 'rust-lang/rust.vim'
 Plug 'elmcast/elm-vim'
 Plug 'tpope/vim-surround'
 Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'Konfekt/FastFold'
 Plug 'mattn/emmet-vim'
@@ -44,8 +45,9 @@ map <C-n> :NERDTreeToggle<CR>
 let NERDTreeQuitOnOpen = 1
 let NERDTreeIgnore = ['\.pyc$']
 
-" SHORTCUT FOR FZF
+" SHORTCUTS FOR FZF
 map <C-f> :FZF<CR>
+map <C-f><C-p> :Rg<CR>
 
 " TURN ON SEARCH HIGHLIGHTING
 set hlsearch
@@ -56,8 +58,9 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
-" SET A VERTICAL LINE AT 73 and 80 CHARACTERS
-let &colorcolumn="73,80"
+" SET A VERTICAL LINE AT 80 and 88 CHARACTERS, WRAP AT 88
+let &colorcolumn="80,88"
+set textwidth=87
 
 " SET COLORSCHEME
 colorscheme solarized
@@ -112,6 +115,7 @@ set backspace=2
 " SET BETTER TABBING STYLES FOR HTML AND JAVASCRIPT
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype pug setlocal ts=2 sts=2 sw=2
+autocmd Filetype yaml setlocal ts=2 sts=2 sw=2
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
 autocmd Filetype markdown setlocal ts=2 sts=2 sw=2 spell
 autocmd Filetype rst setlocal spell
@@ -128,7 +132,7 @@ let g:EclimCompletionMethod = 'omnifunc'
 let g:deoplete#enable_at_startup = 1
 inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
-let g:python3_host_prog = $HOME."/.pyenv/versions/3.7.1/bin/python"
+let g:python3_host_prog = $HOME."/.pyenv/shims/python3"
 
 
 " GOTO SHORTCUT FOR ALE
