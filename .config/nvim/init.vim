@@ -26,6 +26,7 @@ Plug 'tpope/vim-surround'
 Plug 'junegunn/fzf'
 Plug 'tpope/vim-fugitive'
 Plug 'Konfekt/FastFold'
+Plug 'mattn/emmet-vim'
 
 " All of your Plugins must be added before the following line
 call plug#end()            " required
@@ -93,6 +94,8 @@ autocmd BufWritePre * :%s/\s\+$//e
 " SIMPLIFY CODE FOLDING
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zO
+set foldmethod=syntax
+
 let g:rust_fold = 2
 
 " MAKE AIRLINE SHOW UP BY DEFAULT
@@ -128,9 +131,9 @@ inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
 let g:python3_host_prog = $HOME."/.pyenv/versions/3.7.1/bin/python"
 
 
-" GOTO SHORTCUT FOR YCM
-nnoremap <leader>jd :YcmCompleter GoTo<CR>
-nnoremap <leader>jr :YcmCompleter GoToReferences<CR>
+" GOTO SHORTCUT FOR ALE
+nnoremap <leader>jd :ALEGoToDefinition<CR>
+nnoremap <leader>jr :ALEFindReferences<CR>
 
 
 " make Prettier run async
@@ -145,21 +148,14 @@ let g:tagbar_autofocus = 1
 nmap <C-T> :TagbarToggle<CR>
 autocmd BufWritePre,FileWritePre * TagbarClose
 
-" use pycodestyle for linting python files
+" use flake8 for linting python files
 let g:ale_linters = {
-            \ 'python': ['pycodestyle'],
+            \ 'python': ['flake8'],
             \ 'javascript': ['prettier-eslint']
             \ }
-let g:ale_fixers = {
-            \ 'javascript': ['prettier'],
-            \ 'typescript': ['prettier'],
-            \ 'css': ['prettier']
-            \ }
-let g:ale_fix_on_save = 1
 let g:ale_open_list = 1
 let g:ale_sign_column_always = 1
 let g:ale_lint_on_text_changed = 'never'
-
 
 " yank directly to clipboard
 set cb=unnamed
