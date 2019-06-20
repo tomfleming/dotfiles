@@ -22,10 +22,10 @@ export PATH="$CUDA_HOME/bin:$PATH"  # for GPU
 export PATH="$HOME/.cargo/bin:$PATH"  # for Rust
 export PATH="$HOME/apache-maven-3.6.0/bin:$PATH"  # for maven
 export PATH="$HOME/.jenv/bin:$PATH"  # for java version management
+export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"  # for VS Code
 
 
-# enable zsh auto-completion
-autoload -Uz compinit && compinit
+# enable pipenv auto-completion
 eval "$(pipenv --completion)"
 
 
@@ -58,7 +58,7 @@ function ttmux {
 # configure fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND="git ls-files 2>/dev/null || find . -type f"
-alias vimff='vim $(fzf)'
+alias fzvim='vim $(fzf)'
 
 
 # load pyenv (python version manager)

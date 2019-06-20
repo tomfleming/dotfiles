@@ -19,7 +19,6 @@ Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 Plug 'suan/vim-instant-markdown'
 Plug 'majutsushi/tagbar'
 Plug 'tomfleming/yalp-nvim'
-Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'rust-lang/rust.vim'
 Plug 'elmcast/elm-vim'
 Plug 'tpope/vim-surround'
@@ -51,6 +50,8 @@ map <C-f><C-p> :Rg<CR>
 
 " TURN ON SEARCH HIGHLIGHTING
 set hlsearch
+set ignorecase
+set smartcase
 
 " FIX INDENTS TO 4 SPACES
 set autoindent
@@ -97,7 +98,7 @@ autocmd BufWritePre * :%s/\s\+$//e
 " SIMPLIFY CODE FOLDING
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zO
-set foldmethod=syntax
+set foldmethod=indent
 
 let g:rust_fold = 2
 
@@ -117,6 +118,8 @@ autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype pug setlocal ts=2 sts=2 sw=2
 autocmd Filetype yaml setlocal ts=2 sts=2 sw=2
 autocmd Filetype javascript setlocal ts=2 sts=2 sw=2
+autocmd Filetype typescript setlocal ts=2 sts=2 sw=2
+autocmd Filetype typescript.tsx setlocal ts=2 sts=2 sw=2
 autocmd Filetype markdown setlocal ts=2 sts=2 sw=2 spell
 autocmd Filetype rst setlocal spell
 autocmd BufNewFile,BufRead *.md set filetype=markdown
@@ -137,11 +140,8 @@ let g:python3_host_prog = $HOME."/.pyenv/shims/python3"
 
 " GOTO SHORTCUT FOR ALE
 nnoremap <leader>jd :ALEGoToDefinition<CR>
+nnoremap <leader>jv :ALEGoToDefinitionInVSplit<CR>
 nnoremap <leader>jr :ALEFindReferences<CR>
-
-
-" make Prettier run async
-let g:prettier#exec_cmd_async = 1
 
 
 " Turn off indentline for JSON
@@ -154,12 +154,46 @@ autocmd BufWritePre,FileWritePre * TagbarClose
 
 " use flake8 for linting python files
 let g:ale_linters = {
-            \ 'python': ['flake8'],
-            \ 'javascript': ['prettier-eslint']
+            \ 'python': ['flake8', 'pyls'],
+            \ 'javascript': ['prettier-eslint'],
+            \ 'json': ['jsonlint'],
+            \ 'yaml': ['yamllint'],
+            \ 'typescript': ['prettier', 'tslint']
             \ }
+
+let g:ale_python_pyls_config = {
+  \   'pyls': {
+  \     'configurationSources': ['flake8'],
+  \     'plugins': {
+  \       'pyflakes': {
+  \         'enabled': v:false
+  \       },
+  \       'pycodestyle': {
+  \         'enabled': v:false
+  \       },
+  \       'pylint': {
+  \         'enabled': v:false
+  \       }
+  \     }
+  \   },
+  \ }
+let g:ale_fixers = {
+            \ 'python': ['black'],
+            \ 'javascript': ['prettier-eslint'],
+            \ 'json': ['prettier'],
+            \ 'yaml': ['prettier'],
+            \ 'typescript': ['prettier', 'tslint']
+            \ }
+let g:ale_linters_explicit = 1
+let g:ale_fix_on_save = 1
 let g:ale_open_list = 1
 let g:ale_sign_column_always = 1
 let g:ale_lint_on_text_changed = 'never'
+
+
+" let ale do the syntax checking, disable it in nvim_typescript
+let g:nvim_typescript#diagnosticsEnable = 0
+
 
 " yank directly to clipboard
 set cb=unnamed
