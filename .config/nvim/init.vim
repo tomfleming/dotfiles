@@ -125,6 +125,7 @@ autocmd Filetype rst setlocal spell
 autocmd BufNewFile,BufRead *.md set filetype=markdown
 autocmd BufNewFile,BufRead Jenkinsfile* set filetype=groovy
 autocmd BufNewFile,BufRead *.pug set filetype=pug
+autocmd BufNewFile,BufRead *.tsx set filetype=typescript
 
 
 " ENABLE BASIC JAVA FUNCTIONALITY
@@ -158,7 +159,7 @@ let g:ale_linters = {
             \ 'javascript': ['prettier-eslint'],
             \ 'json': ['jsonlint'],
             \ 'yaml': ['yamllint'],
-            \ 'typescript': ['prettier', 'tslint']
+            \ 'typescript': ['eslint', 'tsserver', 'prettier', 'tslint']
             \ }
 
 let g:ale_python_pyls_config = {
