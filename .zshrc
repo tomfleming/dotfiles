@@ -58,7 +58,11 @@ function ttmux {
 # configure fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND="git ls-files 2>/dev/null || find . -type f"
-alias fzvim='vim $(fzf)'
+fz() {
+  local files
+  IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
+  [[ -n "$files" ]] && nvim "${files[@]}"
+}
 
 
 # load pyenv (python version manager)
@@ -82,6 +86,9 @@ eval "$(jenv init -)"
 # import non-shared aliases
 . $HOME/.zcustomaliases
 
+
+# hacky fix for python multi-processing: https://stackoverflow.com/questions/50168647/multiprocessing-causes-python-to-crash-and-gives-an-error-may-have-been-in-progr
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
 # if zsh ever starts loading slowly again... try zprof
 # zprof

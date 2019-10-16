@@ -145,8 +145,8 @@ nnoremap <leader>jv :ALEGoToDefinitionInVSplit<CR>
 nnoremap <leader>jr :ALEFindReferences<CR>
 
 
-" Turn off indentline for JSON
-autocmd Filetype json let g:indentLine_conceallevel=0
+" Turn off indentline for JSON and Markdown
+autocmd Filetype json,markdown let g:indentLine_conceallevel=0
 
 " Tagbar settings
 let g:tagbar_autofocus = 1
