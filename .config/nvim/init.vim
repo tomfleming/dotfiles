@@ -154,14 +154,17 @@ nmap <C-T> :TagbarToggle<CR>
 autocmd BufWritePre,FileWritePre * TagbarClose
 
 " use flake8 for linting python files
+let g:ale_python_auto_pipenv = 1
 let g:ale_linters = {
-            \ 'python': ['flake8', 'pyls'],
+            \ 'python': ['flake8', 'pyls', 'mypy'],
             \ 'javascript': ['prettier-eslint'],
             \ 'json': ['jsonlint'],
             \ 'yaml': ['yamllint'],
-            \ 'typescript': ['eslint', 'tsserver', 'prettier', 'tslint']
+            \ 'typescript': ['eslint', 'tsserver', 'prettier', 'tslint'],
+            \ 'sh': ['shellcheck']
             \ }
 
+let g:ale_python_mypy_options = '--check-untyped-defs'
 let g:ale_python_pyls_config = {
   \   'pyls': {
   \     'configurationSources': ['flake8'],
@@ -183,7 +186,7 @@ let g:ale_fixers = {
             \ 'javascript': ['prettier-eslint'],
             \ 'json': ['prettier'],
             \ 'yaml': ['prettier'],
-            \ 'typescript': ['prettier', 'tslint']
+            \ 'typescript': ['prettier', 'tslint', 'eslint']
             \ }
 let g:ale_linters_explicit = 1
 let g:ale_fix_on_save = 1
@@ -193,7 +196,7 @@ let g:ale_lint_on_text_changed = 'never'
 
 
 " let ale do the syntax checking, disable it in nvim_typescript
-let g:nvim_typescript#diagnosticsEnable = 0
+let g:nvim_typescript#diagnostics_enable = 0
 
 
 " yank directly to clipboard
