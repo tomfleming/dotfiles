@@ -15,7 +15,6 @@ Plug 'ianks/vim-tsx'
 Plug 'tmhedberg/SimpylFold'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'mhartington/nvim-typescript', {'do': './install.sh'}
 Plug 'suan/vim-instant-markdown'
 Plug 'majutsushi/tagbar'
 Plug 'tomfleming/yalp-nvim'
@@ -75,9 +74,6 @@ nnoremap <C-H> <C-W><C-H>
 set splitbelow
 set splitright
 
-" ENABLE CONTROL-P PLUGIN
-set runtimepath^=~/.vim/bundle/ctrlp.vim
-
 " ENABLE INVERSE TABBING
 " for command mode
 nmap <S-Tab> <<
@@ -126,6 +122,7 @@ autocmd BufNewFile,BufRead *.md set filetype=markdown
 autocmd BufNewFile,BufRead Jenkinsfile* set filetype=groovy
 autocmd BufNewFile,BufRead *.pug set filetype=pug
 autocmd BufNewFile,BufRead *.tsx set filetype=typescript
+autocmd BufNewFile,BufRead *.js set filetype=javascript
 
 
 " ENABLE BASIC JAVA FUNCTIONALITY
@@ -156,12 +153,16 @@ autocmd BufWritePre,FileWritePre * TagbarClose
 " use flake8 for linting python files
 let g:ale_python_auto_pipenv = 1
 let g:ale_linters = {
-            \ 'python': ['flake8', 'pyls', 'mypy'],
-            \ 'javascript': ['prettier-eslint'],
+            \ 'css': ['stylelint'],
+            \ 'html': ['htmlhint'],
+            \ 'javascript': ['prettier'],
             \ 'json': ['jsonlint'],
+            \ 'python': ['flake8', 'pyls', 'mypy'],
+            \ 'php': ['phpcs'],
+            \ 'sh': ['shellcheck'],
+            \ 'typescript': ['eslint', 'tslint', 'tsserver', 'prettier'],
+            \ 'vue': ['prettier'],
             \ 'yaml': ['yamllint'],
-            \ 'typescript': ['eslint', 'tsserver', 'prettier', 'tslint'],
-            \ 'sh': ['shellcheck']
             \ }
 
 let g:ale_python_mypy_options = '--check-untyped-defs'
@@ -181,12 +182,17 @@ let g:ale_python_pyls_config = {
   \     }
   \   },
   \ }
+let g:ale_php_phpcs_standard = 'PSR2'
 let g:ale_fixers = {
-            \ 'python': ['black'],
-            \ 'javascript': ['prettier-eslint'],
+            \ 'css': ['prettier'],
+            \ 'html': ['prettier'],
+            \ 'javascript': ['prettier'],
             \ 'json': ['prettier'],
+            \ 'php': ['phpcbf', 'php_cs_fixer'],
+            \ 'python': ['black'],
+            \ 'typescript': ['prettier', 'tslint', 'eslint'],
+            \ 'vue': ['prettier'],
             \ 'yaml': ['prettier'],
-            \ 'typescript': ['prettier', 'tslint', 'eslint']
             \ }
 let g:ale_linters_explicit = 1
 let g:ale_fix_on_save = 1
@@ -197,7 +203,6 @@ let g:ale_lint_on_text_changed = 'never'
 
 " let ale do the syntax checking, disable it in nvim_typescript
 let g:nvim_typescript#diagnostics_enable = 0
-
 
 " yank directly to clipboard
 set cb=unnamed

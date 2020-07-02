@@ -23,8 +23,9 @@ export PATH="$HOME/.cargo/bin:$PATH"  # for Rust
 export PATH="$HOME/apache-maven-3.6.0/bin:$PATH"  # for maven
 export PATH="$HOME/.jenv/bin:$PATH"  # for java version management
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"  # for VS Code
-export PATH="$PATH:$HOME/.poetry/bin"  # for poetry
+export PATH="$PATH:$HOME/.poetry/bin"  # for python poetry
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"  # for Yarn
+export PATH="$PATH:$HOME/.composer/vendor/bin"  # for PHP
 
 
 # enable pipenv auto-completion
@@ -80,6 +81,10 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 
 
+# enable pipenv auto-completion
+eval "$(pipenv --completion)"
+
+
 # load rbenv to manage ruby versions
 eval "$(rbenv init -)"
 
@@ -91,13 +96,16 @@ eval "$(nodenv init -)"
 # load nodenv to manage node versions
 eval "$(jenv init -)"
 
-
-# import non-shared aliases
-. $HOME/.zcustomaliases
-
-
 # hacky fix for python multi-processing: https://stackoverflow.com/questions/50168647/multiprocessing-causes-python-to-crash-and-gives-an-error-may-have-been-in-progr
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+
+# The next line updates PATH for the Google Cloud SDK.
+source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+export CLOUDSDK_PYTHON=$(which python)
+
+# Enable poetry autocompletion
+fpath+=~/.zfunc
 
 # fix strange mysql autocompletion behavior
 unalias mysql
@@ -106,6 +114,9 @@ unalias mysql
 # https://medium.com/@shandou/pipenv-install-mysqlclient-on-macosx-7c253b0112f2
 export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
 export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
+
+# import non-shared aliases
+. $HOME/.zcustomaliases
 
 # if zsh ever starts loading slowly again... try zprof
 # zprof
