@@ -17,7 +17,7 @@ prompt pure
 
 
 # configure PATH
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/Library/TeX/texbin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/sbin:/usr/sbin:/sbin:/Library/TeX/texbin:$HOME/.local/bin"
 export PATH="$CUDA_HOME/bin:$PATH"  # for GPU
 export PATH="$HOME/.cargo/bin:$PATH"  # for Rust
 export PATH="$HOME/apache-maven-3.6.0/bin:$PATH"  # for maven

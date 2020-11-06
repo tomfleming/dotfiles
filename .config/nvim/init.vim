@@ -151,6 +151,8 @@ nmap <C-T> :TagbarToggle<CR>
 autocmd BufWritePre,FileWritePre * TagbarClose
 
 " use flake8 for linting python files
+" pretty good setup for TS linting:
+" https://www.robertcooper.me/using-eslint-and-prettier-in-a-typescript-project
 let g:ale_python_auto_pipenv = 1
 let g:ale_linters = {
             \ 'css': ['stylelint'],
