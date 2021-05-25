@@ -3,12 +3,11 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'altercation/vim-colors-solarized'
 Plug 'scrooloose/nerdtree'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'Yggdroot/indentLine'
 Plug 'w0rp/ale'
+Plug 'neoclide/coc.nvim', { 'branch': 'master', 'do': 'yarn install --frozen-lockfile' }
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'ianks/vim-tsx'
@@ -59,8 +58,8 @@ set shiftwidth=4
 set expandtab
 
 " SET A VERTICAL LINE AT 80 and 88 CHARACTERS, WRAP AT 88
-let &colorcolumn="80,88"
-set textwidth=87
+let &colorcolumn="80,119"
+set textwidth=120
 
 " SET COLORSCHEME
 colorscheme solarized
@@ -121,25 +120,19 @@ autocmd Filetype rst setlocal spell
 autocmd BufNewFile,BufRead *.md set filetype=markdown
 autocmd BufNewFile,BufRead Jenkinsfile* set filetype=groovy
 autocmd BufNewFile,BufRead *.pug set filetype=pug
-autocmd BufNewFile,BufRead *.tsx set filetype=typescript
+autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
 autocmd BufNewFile,BufRead *.js set filetype=javascript
+autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx
 
 
 " ENABLE BASIC JAVA FUNCTIONALITY
 let g:EclimCompletionMethod = 'omnifunc'
 
 
-" SETUP DEOPLETE
-let g:deoplete#enable_at_startup = 1
-inoremap <silent><expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-inoremap <silent><expr><s-tab> pumvisible() ? "\<c-p>" : "\<s-tab>"
-let g:python3_host_prog = $HOME."/.pyenv/shims/python3"
-
-
 " GOTO SHORTCUT FOR ALE
-nnoremap <leader>jd :ALEGoToDefinition<CR>
-nnoremap <leader>jv :ALEGoToDefinitionInVSplit<CR>
-nnoremap <leader>jr :ALEFindReferences<CR>
+nmap <leader>jd <Plug>(coc-definition)
+nmap <leader>jv :vsplit<CR><Plug>(coc-definition)
+nmap <leader>jr <Plug>(coc-references)
 
 
 " Turn off indentline for JSON and Markdown
@@ -162,7 +155,7 @@ let g:ale_linters = {
             \ 'python': ['flake8', 'pyls', 'mypy'],
             \ 'php': ['phpcs'],
             \ 'sh': ['shellcheck'],
-            \ 'typescript': ['eslint', 'tslint', 'tsserver', 'prettier'],
+            \ 'typescript': ['eslint', 'tslint', 'prettier'],
             \ 'vue': ['prettier'],
             \ 'yaml': ['yamllint'],
             \ }
@@ -202,9 +195,25 @@ let g:ale_open_list = 1
 let g:ale_sign_column_always = 1
 let g:ale_lint_on_text_changed = 'never'
 
+"make ale play nice with coc
+let g:ale_disable_lsp = 1
 
 " let ale do the syntax checking, disable it in nvim_typescript
 let g:nvim_typescript#diagnostics_enable = 0
+
+
+" allow coc to complete with <TAB>
+" use <tab> for trigger completion and navigate to the next complete item
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
+
 
 " yank directly to clipboard
 set cb=unnamed

@@ -112,11 +112,14 @@ unalias mysql
 
 # include LDFLAGS and CPPFLAGS for fixing openssl and installing mysqlclient
 # https://medium.com/@shandou/pipenv-install-mysqlclient-on-macosx-7c253b0112f2
-export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
-export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
+# NOTE: THESE BREAK PARTICLE BUILDS... SO DECIDE WHETHER THEY'RE NEEDED
+# export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
+# export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
 
 # import non-shared aliases
 . $HOME/.zcustomaliases
 
 # if zsh ever starts loading slowly again... try zprof
 # zprof
+
+. /usr/local/opt/asdf/asdf.sh
