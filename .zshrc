@@ -28,10 +28,6 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH" 
 export PATH="$PATH:$HOME/.composer/vendor/bin"  # for PHP
 
 
-# enable pipenv auto-completion
-eval "$(pipenv --completion)"
-
-
 # configure CUDA
 export CUDA_HOME=/usr/local/cuda
 export DYLD_LIBRARY_PATH="$DYLD_LIBRARY_PATH:$CUDA_HOME/lib"
@@ -75,27 +71,6 @@ fzr() {
 }
 
 
-# load pyenv (python version manager)
-if command -v pyenv 1>/dev/null 2>&1; then
-  eval "$(pyenv init -)"
-fi
-
-
-# enable pipenv auto-completion
-eval "$(pipenv --completion)"
-
-
-# load rbenv to manage ruby versions
-eval "$(rbenv init -)"
-
-
-# load nodenv to manage node versions
-eval "$(nodenv init -)"
-
-
-# load nodenv to manage node versions
-eval "$(jenv init -)"
-
 # hacky fix for python multi-processing: https://stackoverflow.com/questions/50168647/multiprocessing-causes-python-to-crash-and-gives-an-error-may-have-been-in-progr
 export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 
@@ -117,9 +92,13 @@ unalias mysql
 # export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
 
 # import non-shared aliases
-. $HOME/.zcustomaliases
+if [ -f "$HOME/.zcustomaliases" ]; then
+    . $HOME/.zcustomaliases
+fi
 
 # if zsh ever starts loading slowly again... try zprof
 # zprof
 
+
+# Add asdf for managing runtime versions of various languages
 . /usr/local/opt/asdf/asdf.sh

@@ -3,18 +3,17 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'altercation/vim-colors-solarized'
 Plug 'scrooloose/nerdtree'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
 Plug 'Yggdroot/indentLine'
 Plug 'w0rp/ale'
-Plug 'neoclide/coc.nvim', { 'branch': 'master', 'do': 'yarn install --frozen-lockfile' }
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'ianks/vim-tsx'
 Plug 'tmhedberg/SimpylFold'
 Plug 'hynek/vim-python-pep8-indent'
+Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown'}
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'suan/vim-instant-markdown'
 Plug 'majutsushi/tagbar'
 Plug 'tomfleming/yalp-nvim'
 Plug 'rust-lang/rust.vim'
@@ -109,6 +108,7 @@ set encoding=utf-8
 set backspace=2
 
 " SET BETTER TABBING STYLES FOR HTML AND JAVASCRIPT
+filetype plugin on
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
 autocmd Filetype pug setlocal ts=2 sts=2 sw=2
 autocmd Filetype yaml setlocal ts=2 sts=2 sw=2
@@ -137,6 +137,7 @@ nmap <leader>jr <Plug>(coc-references)
 
 " Turn off indentline for JSON and Markdown
 autocmd Filetype json,markdown let g:indentLine_conceallevel=0
+let g:indentLine_fileTypeExclude = ['json', 'markdown']
 
 " Tagbar settings
 let g:tagbar_autofocus = 1
@@ -217,3 +218,7 @@ inoremap <silent><expr> <Tab>
 
 " yank directly to clipboard
 set cb=unnamed
+
+" Set bash as the shell for instant-markdown to work
+" https://github.com/instant-markdown/vim-instant-markdown#faq
+set shell=bash\ -i

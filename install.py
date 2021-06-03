@@ -5,12 +5,14 @@ dotfiles_dir = '~/dotfiles'
 backup_dir = '~/dotfiles_old'
 files = [
         ".gitignore_global",
-        ".oh-my-zsh/custom/themes/bureau-tweak.zsh-theme",
         ".tmux.conf",
         ".vimrc",
         ".zpreztorc",
         ".zshrc",
-        ".config/nvim/init.vim"]
+        ".config/nvim/init.vim",
+        ".editorconfig",
+        ".flake8",
+]
 backup = False
 
 for f in files:
